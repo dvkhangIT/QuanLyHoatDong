@@ -27,11 +27,11 @@ if (isset($_POST['btn_save'])) {
                 $sql = "INSERT INTO minhchung(hinhAnh, id_thamGia) VALUES ( '$newFileName', '$id_thamGia')";
                 $query = mysqli_query($conn, $sql);
                 // Hiển thị thông báo thành công
-//                echo "Upload thành công: $newFileName <br>";
+                //                echo "Upload thành công: $newFileName <br>";
                 $flg = true;
             } else {
                 // Hiển thị thông báo lỗi nếu tập tin không phải là ảnh
-//                echo "Lỗi: Tập tin không phải là ảnh <br>";
+                //                echo "Lỗi: Tập tin không phải là ảnh <br>";
                 $flg = false;
             }
         }
@@ -63,33 +63,23 @@ if (isset($_POST['btn_save'])) {
             <label for="id_thamGia" class="form-label">Tên hoạt động</label>
             <select class="custom-select" id="id_thamGia" name="id_thamGia">
                 <<?php
-                $mssv = $_SESSION['mssv'];
-                $sql = "SELECT * FROM thamgia,hoatdong WHERE thamgia.id_hoatDong = hoatdong.id_hoatDong AND thamgia.mssv = '$mssv'";
-                $result = mysqli_query($conn, $sql);
-                while ($row = mysqli_fetch_array($result)) {
-                    ?>
-                    <option value="<?php echo $row['id_thamGia'] ?>"><?php echo $row['tenHoatDong'] ?></option>
+                    $mssv = $_SESSION['mssv'];
+                    $sql = "SELECT * FROM thamgia,hoatdong WHERE thamgia.id_hoatDong = hoatdong.id_hoatDong AND thamgia.mssv = '$mssv'";
+                    $result = mysqli_query($conn, $sql);
+                    while ($row = mysqli_fetch_array($result)) {
+                    ?> <option value="<?php echo $row['id_thamGia'] ?>"><?php echo $row['tenHoatDong'] ?></option>
                 <?php } ?>
             </select>
         </div>
         <div class="mb-4 mt-4">
             <label for="hinhAnh" class="form-label">Hình ảnh</label>
             <div class="custom-file">
-                <input type="file" name="images[]" class="custom-file-input" id="hinhAnh" multiple accept="image/*"/>
-                <label
-                        class="custom-file-label"
-                        for="hinhAnh"
-                        data-browse="Tải lên"
-                >Chọn ảnh</label
-                >
+                <input type="file" name="images[]" class="custom-file-input" id="hinhAnh" multiple accept="image/*" />
+                <label class="custom-file-label" for="hinhAnh" data-browse="Tải lên">Chọn ảnh</label>
             </div>
         </div>
         <div class="mb-4 text-center">
-            <button
-                    type="submit"
-                    name="btn_save"
-                    class="btn background-pr text-white w-100"
-            >
+            <button type="submit" name="btn_save" class="btn background-pr text-white w-100">
                 Lưu
             </button>
         </div>
