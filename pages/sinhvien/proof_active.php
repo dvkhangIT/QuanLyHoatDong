@@ -1,45 +1,37 @@
 <?php
+if (!isset($_SESSION['tenDangNhap'])) {
+    header("Location:index.php?url=login");
+}
 // Kiểm tra xem form đã được submit chưa
 if (isset($_POST['btn_save'])) {
     $id_thamGia = $_POST['id_thamGia'];
-    // Kiểm tra có tập tin nào được chọn hay không
-    if (isset($_FILES["images"])) {
-        // Thư mục lưu trữ ảnh
-        $uploadDirectory = "uploads/";
+    $uploadDir = 'uploads/';
+    // Kiểm tra xem có file đã được chọn không
+    if (isset($_FILES['images']['name']) && !empty($_FILES['images']['name'])) {
+        $name = $_FILES['images']['name'];
+        $targetFile = $uploadDir . basename($name);
 
-        // Loop qua từng ảnh
-        foreach ($_FILES["images"]["tmp_name"] as $key => $tmp_name) {
-            // Lấy thông tin về ảnh
-            $fileName = $_FILES["images"]["name"][$key];
-            $fileTmp = $_FILES["images"]["tmp_name"][$key];
-            $fileType = $_FILES["images"]["type"][$key];
-            $fileSize = $_FILES["images"]["size"][$key];
-            $fileError = $_FILES["images"]["error"][$key];
-
-            // Kiểm tra xem có phải là ảnh không
-            $allowedTypes = array("image/jpeg", "image/png");
-            if (in_array($fileType, $allowedTypes)) {
-                // Đổi tên tập tin để tránh trùng lặp
-                $newFileName = time() . "_" . $fileName;
-                // Di chuyển tập tin vào thư mục lưu trữ
-                move_uploaded_file($fileTmp, $uploadDirectory . $newFileName);
-                // Lưu ảnh và db
-                $sql = "INSERT INTO minhchung(hinhAnh, id_thamGia) VALUES ( '$newFileName', '$id_thamGia')";
+        // Kiểm tra xem file đã tồn tại chưa
+        if (file_exists($targetFile)) {
+            echo "File $name đã tồn tại. ";
+        } else {
+            // Di chuyển file từ thư mục tạm sang thư mục đích
+            if (move_uploaded_file($_FILES['images']['tmp_name'], $targetFile)) {
+                $newFileName = time() . '_' . $_FILES['images']['name'];
+                $sql = "INSERT INTO minhchung(hinhAnh, thamGiaID) VALUES ( '$newFileName', '$id_thamGia')";
                 $query = mysqli_query($conn, $sql);
-                // Hiển thị thông báo thành công
-                //                echo "Upload thành công: $newFileName <br>";
                 $flg = true;
             } else {
-                // Hiển thị thông báo lỗi nếu tập tin không phải là ảnh
-                //                echo "Lỗi: Tập tin không phải là ảnh <br>";
                 $flg = false;
             }
         }
+    } else {
+        echo "Vui lòng chọn một file ảnh để tải lên. ";
     }
 }
 ?>
 <div class="form-proof">
-    <?php
+     <?php
     if (isset($flg)) {
         if ($flg) {
             echo ' <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -58,31 +50,31 @@ if (isset($_POST['btn_save'])) {
         }
     }
     ?>
-    <form action="" method="post" enctype="multipart/form-data">
-        <div class="mb-4 mt-4">
-            <label for="id_thamGia" class="form-label">Tên hoạt động</label>
-            <select class="custom-select" id="id_thamGia" name="id_thamGia">
-                <<?php
-                    $mssv = $_SESSION['mssv'];
-                    $sql = "SELECT * FROM thamgia,hoatdong WHERE thamgia.id_hoatDong = hoatdong.id_hoatDong AND thamgia.mssv = '$mssv'";
+     <form action="" method="post" enctype="multipart/form-data">
+          <div class="mb-4 mt-4">
+               <label for="id_thamGia" class="form-label">Tên hoạt động</label>
+               <select class="custom-select" id="id_thamGia" name="id_thamGia">
+                    <<?php
+                    $mssv = $_SESSION['tenDangNhap'];
+                    $sql = "SELECT * FROM thamgia,hoatdong WHERE thamgia.hoatDongID = hoatdong.hoatDongID AND thamgia.mssv = '$mssv'";
                     $result = mysqli_query($conn, $sql);
                     while ($row = mysqli_fetch_array($result)) {
-                    ?> <option value="<?php echo $row['id_thamGia'] ?>"><?php echo $row['tenHoatDong'] ?></option>
-                <?php } ?>
-            </select>
-        </div>
-        <div class="mb-4 mt-4">
-            <label for="hinhAnh" class="form-label">Hình ảnh</label>
-            <div class="custom-file">
-                <input type="file" name="images[]" class="custom-file-input" id="hinhAnh" multiple accept="image/*" />
-                <label class="custom-file-label" for="hinhAnh" data-browse="Tải lên">Chọn ảnh</label>
-            </div>
-        </div>
-        <div class="mb-4 text-center">
-            <button type="submit" name="btn_save" class="btn background-pr text-white w-100">
-                Lưu
-            </button>
-        </div>
-    </form>
+                    ?> <option value="<?php echo $row['thamGiaID'] ?>"><?php echo $row['tenHoatDong'] ?></option>
+                         <?php } ?>
+               </select>
+          </div>
+          <div class="mb-4 mt-4">
+               <label for="hinhAnh" class="form-label">Hình ảnh</label>
+               <div class="custom-file">
+                    <input type="file" name="images" class="custom-file-input" id="hinhAnh" />
+                    <label class="custom-file-label" for="hinhAnh" data-browse="Tải lên">Chọn ảnh</label>
+               </div>
+          </div>
+          <div class="mb-4 text-center">
+               <button type="submit" name="btn_save" class="btn background-pr text-white w-100">
+                    Lưu
+               </button>
+          </div>
+     </form>
 </div>
 </div>

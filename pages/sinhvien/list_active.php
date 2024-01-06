@@ -1,3 +1,8 @@
+<?php
+if (!isset($_SESSION['tenDangNhap'])) {
+    header("Location:index.php?url=login");
+}
+?>
 <div class="main-content p-4 p-md-5 pt-5">
     <?php
     if (isset($_SESSION['success_message'])) {
@@ -9,7 +14,7 @@
     unset($_SESSION['error_message']);
     ?>
     <div class="mb-3 w-50 float-right">
-        <form action="#">
+        <form action="" method="POST">
             <div class="input-group">
                 <input type="text" class="form-control form-control" placeholder="Tìm kiếm" name="input-search" />
                 <div class="input-group-append background-pr rounded-right">
@@ -20,6 +25,7 @@
             </div>
         </form>
     </div>
+    <button onclick="printPage()">In trang</button>
 </div>
 <table class="table-responsive table bg-light">
     <tbody>
@@ -31,8 +37,23 @@
             <th class="col-1">Thao tác</th>
         </tr>
         <?php
-        $sql = "SELECT * FROM `hoatdong`";
+        // Bước 1: Định nghĩa các biến và hằng số phân trang
+        $limit = 3; // Số bản ghi trên mỗi trang
+        $current_page = isset($_GET['page']) ? $_GET['page'] : 1; // Trang hiện tại, mặc định là trang 1
+
+        // Bước 2: Sửa câu truy vấn SQL để lấy chỉ một phần của dữ liệu dựa trên trang hiện tại
+        $start = ($current_page - 1) * $limit;
+        if (isset($_POST['button-search'])) {
+            $key = $_POST['input-search'];
+            $sql = "SELECT * FROM hoatdong WHERE tenHoatDong LIKE '%$key%' LIMIT $start,$limit";
+        } else {
+            $sql = "SELECT * FROM `hoatdong` LIMIT $start,$limit";
+        }
         $result = mysqli_query($conn, $sql);
+
+        // Bước 3: Tính toán số lượng trang và hiển thị các nút phân trang
+        $total_rows = mysqli_num_rows(mysqli_query($conn, "SELECT * FROM hoatdong"));
+        $total_pages = ceil($total_rows / $limit);
         if ($num = mysqli_num_rows($result) > 0) {
             $stt = 0;
             while ($row = mysqli_fetch_array($result)) {
@@ -44,30 +65,26 @@
                     <td><?php echo $row['diaDiem'] ?></td>
                     <td><?php echo $row['moTa'] ?></td>
                     <td>
-                        <a class="text-decoration-none" href="?url=handle_join&id=<?php echo $row['id_hoatDong'] ?>">Tham gia</a>
+                        <a class="text-decoration-none" href="?url=handle_join&id=<?php echo $row['hoatDongID'] ?>">Tham gia</a>
                     </td>
                 </tr>
         <?php
             }
+        } else {
+            header("Location:index.php?url=error");
         }
         ?>
     </tbody>
 </table>
-<nav aria-label="Page navigation example">
+<nav aria-label="Page navigation">
     <ul class="pagination float-right">
-        <li class="page-item">
-            <a class="page-link" href="#" aria-label="Previous">
-                <span aria-hidden="true">&laquo;</span>
-            </a>
-        </li>
-        <li class="page-item"><a class="page-link" href="#">1</a></li>
-        <li class="page-item"><a class="page-link" href="#">2</a></li>
-        <li class="page-item"><a class="page-link" href="#">3</a></li>
-        <li class="page-item">
-            <a class="page-link" href="#" aria-label="Next">
-                <span aria-hidden="true">&raquo;</span>
-            </a>
-        </li>
+        <?php for ($i = 1; $i <= $total_pages; $i++) : ?>
+            <li class="page-item <?php echo ($i == $current_page) ? 'active' : ''; ?>">
+                <a class="page-link" href="?url=list_active&page=<?php echo $i; ?>">
+                    <?php echo $i; ?>
+                </a>
+            </li>
+        <?php endfor; ?>
     </ul>
 </nav>
 </div>

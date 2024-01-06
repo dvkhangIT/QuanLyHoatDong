@@ -4,8 +4,8 @@ if (session_status() == PHP_SESSION_NONE) {
 }
 ?>
 <?php
-if (isset($_SESSION['mssv']) && isset($_SESSION['hoten'])) {
-    unset($_SESSION['mssv']);
-    unset($_SESSION['hoten']);
+if (isset($_SESSION['tenDangNhap']) && isset($_SESSION['hoTen'])) {
+    unset($_SESSION['tenDangNhap']);
+    unset($_SESSION['hoTen']);
 }
 header("Location:index.php");
