@@ -67,14 +67,16 @@ if (isset($_POST['btn_save'])) {
       </select>
     </div>
     <div class="mb-4 mt-4">
-      <label for="hinhAnh" class="form-label">Hình ảnh</label>
+      <label class="form-label">Hình ảnh</label>
       <div class="custom-file">
         <input type="file" name="images" class="custom-file-input" id="hinhAnh" onchange="previewImage(event)" required />
         <label class="custom-file-label" for="hinhAnh" data-browse="Tải lên">Chọn ảnh</label>
       </div>
-      <div>
-        <img id="preview" src="" alt="Ảnh xem trước" style="max-width: 100%; max-height: 100px; margin-top: 10px;">
-      </div>
+      <label for="hinhAnh" class="preview ">
+        <div class="wrap-image ">
+          <img onclick="previewImage(event)" id="image-preview" src="images/img-upload.png" alt="image-upload">
+        </div>
+      </label>
     </div>
     <div class="mb-4 text-center">
       <button type="submit" name="btn_save" class="btn background-pr text-white w-100">
