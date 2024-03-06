@@ -1,6 +1,7 @@
 <?php
 if (!isset($_SESSION['tenDangNhap'])) {
-  header("Location:index.php?url=login");
+  echo '<script> location.replace("index.php?url=login");</script>';
+  // header("Location:index.php?url=login");
 }
 ?>
 <div class="mb-3 w-50 float-right">
@@ -53,7 +54,7 @@ if (!isset($_SESSION['tenDangNhap'])) {
     <?php
       }
     } else {
-      header("Location:index.php?url=error");
+      echo ' <script> location.replace("index.php?url=error"); </script>';
     }
     ?>
   </tbody>

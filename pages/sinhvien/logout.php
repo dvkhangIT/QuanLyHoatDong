@@ -9,4 +9,4 @@ if (isset($_SESSION['tenDangNhap']) && isset($_SESSION['hoTen']) && isset($_SESS
   unset($_SESSION['hoTen']);
   unset($_SESSION['vaiTro']);
 }
-header("Location:index.php");
+echo ' <script> location.replace("index.php"); </script>';

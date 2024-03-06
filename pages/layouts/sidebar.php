@@ -17,7 +17,16 @@
         </div>
       </a>
     </li>
-    <li class="<?php echo isset($_GET['url']) && $_GET['url'] == "list_active" ? "active" : "" ?>">
+    <li class="
+    <?php
+    if (isset($_GET['url']) && $_GET['url'] == "list_active") {
+      echo 'active';
+    } elseif (!isset($_SESSION['tenDangNhap'])) {
+      echo 'disable-sidebar';
+    } else {
+      echo '';
+    }
+    ?>">
       <a href="?url=list_active">
         <div class="link">
           <div style="width: 30px;">
@@ -31,7 +40,15 @@
         </div>
       </a>
     </li>
-    <li class="<?php echo isset($_GET['url']) && $_GET['url'] == "join_active" ? "active" : "" ?>">
+    <li class=" <?php
+                if (isset($_GET['url']) && $_GET['url'] == "join_active") {
+                  echo 'active';
+                } elseif (!isset($_SESSION['tenDangNhap'])) {
+                  echo 'disable-sidebar';
+                } else {
+                  echo '';
+                }
+                ?>">
       <a href="?url=join_active">
         <div class="link">
           <div style="width: 30px;">
@@ -45,7 +62,16 @@
         </div>
       </a>
     </li>
-    <li class="<?php echo isset($_GET['url']) && $_GET['url'] == "proof_active" ? "active" : "" ?>">
+    <li class="
+    <?php
+    if (isset($_GET['url']) && $_GET['url'] == "proof_active") {
+      echo 'active';
+    } elseif (!isset($_SESSION['tenDangNhap'])) {
+      echo 'disable-sidebar';
+    } else {
+      echo '';
+    }
+    ?>">
       <a href="?url=proof_active">
         <div class="link">
           <div style="width: 30px;">
@@ -59,7 +85,16 @@
         </div>
       </a>
     </li>
-    <li class="<?php echo isset($_GET['url']) && $_GET['url'] == "proof_list" ? "active" : "" ?>">
+    <li class="
+     <?php
+      if (isset($_GET['url']) && $_GET['url'] == "proof_list") {
+        echo 'active';
+      } elseif (!isset($_SESSION['tenDangNhap'])) {
+        echo 'disable-sidebar';
+      } else {
+        echo '';
+      }
+      ?>">
       <a href="?url=proof_list">
         <div class="link">
           <div style="width: 30px;">

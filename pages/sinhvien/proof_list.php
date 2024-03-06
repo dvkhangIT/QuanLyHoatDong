@@ -1,6 +1,7 @@
 <?php
 if (!isset($_SESSION['tenDangNhap'])) {
-  header("Location:index.php?url=login");
+  // header("Location:index.php?url=login");
+  echo ' <script> location.replace("index.php?url=login"); </script>';
 }
 $mssv = $_SESSION['tenDangNhap'];
 $sql = "SELECT hoatdong.tenHoatDong,hoatdong.diaDiem,hoatdong.moTa,minhchung.hinhAnh FROM thamgia,minhchung,hoatdong WHERE hoatdong.hoatDongID = thamgia.hoatDongID AND thamgia.thamGiaID=minhchung.thamGiaID AND thamgia.MSSV = $mssv";
@@ -10,7 +11,7 @@ $result = mysqli_query($conn, $sql);
   <tbody>
     <?php
     if ($num = mysqli_num_rows($result) <= 0) {
-      echo '<h4 class="text-center">Bạn chưa có minh chứng!</h4>';
+      echo ' <script> location.replace("index.php?url=error"); </script>';
     } else {
       echo '<tr>
       <th class="">STT</th>

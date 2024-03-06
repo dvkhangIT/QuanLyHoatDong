@@ -1,1 +1,1 @@
-<h3 class="text-center">Không có dữ liệu <br> Bạn có muốn <a href="#" onclick="goBack()">quay lại?</a></h3>
+<h3 class="text-center">Không có dữ liệu <br> Bạn có muốn <a href="index.php">về trang chủ?</a></h3>

@@ -25,7 +25,7 @@ window.onload = function () {
 // display image review
 function previewImage(event) {
   var input = event.target;
-  var preview = document.getElementById('preview');
+  var preview = document.getElementById('image-preview');
   if (input.files && input.files[0]) {
     var reader = new FileReader();
     reader.onload = function (e) {
@@ -35,3 +35,9 @@ function previewImage(event) {
     reader.readAsDataURL(input.files[0]);
   }
 }
+document.getElementById('deleteIcon')?.addEventListener('click', function () {
+  var preview = document.getElementById('image-preview');
+  preview.src = 'images/img-upload.png';
+  // preview.style.display = 'none';
+  document.getElementById('hinhAnh').value = '';
+});
