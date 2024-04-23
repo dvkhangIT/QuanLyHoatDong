@@ -1,7 +1,7 @@
 <?php
-// if (!isset($_SESSION['tenDangNhap'])) {
-//     header("Location:");
-// }
+if (!isset($_SESSION['tenDangNhap'])) {
+     header("Location:../index.php?url=login");
+ }
 // Kiểm tra xem form đã được submit chưa
 if (isset($_POST['btn_save'])) {
  // Lấy thông tin
@@ -40,31 +40,37 @@ if (isset($_POST['btn_save'])) {
         }
     }
     ?>
-     <div class="mb-4">
-          <a href="?url=list_class" class="btn btn-outline-primary">Lớp</a>
-     </div>
-     <form class="form-group" action="" method="post" enctype="multipart/form-data">
-          <div class="mb-4 mt-4">
-               <label for="khoaID" class="form-label">Khoa</label>
-               <select class="custom-select" id="khoaHocID" name="khoaID">
-                    <<?php
+     <div class="row">
+          <div class="col-3"></div>
+          <div class="col-6">
+               <div class="mb-4">
+                    <a href="?url=list_class" class="btn btn-outline-primary">Lớp</a>
+               </div>
+               <h3 class="mb-4 text-center">Thêm lớp</h3>
+               <form class="form-group" action="" method="post" enctype="multipart/form-data">
+                    <div class="mb-4 mt-4">
+                         <label for="khoaID" class="form-label">Khoa</label>
+                         <select class="custom-select" id="khoaHocID" name="khoaID">
+                              <<?php
                     $sql = "SELECT * FROM khoa";
                     $result = mysqli_query($conn, $sql);
                     while ($row = mysqli_fetch_array($result)) {
                     ?> <option value="<?php echo $row['khoaID'] ?>"><?php echo $row['tenKhoa'] ?></option>
-                         <?php } ?>
-               </select>
-          </div>
-          <div class="mb-4 mt-4">
-               <label for="tenLop" class="form-label">Tên lớp</label>
-               <input type="text" name="tenLop" class="form-control" id="tenLop" required />
-          </div>
+                                   <?php } ?>
+                         </select>
+                    </div>
+                    <div class="mb-4 mt-4">
+                         <label for="tenLop" class="form-label">Tên lớp</label>
+                         <input type="text" name="tenLop" class="form-control" id="tenLop" required />
+                    </div>
 
-          <div class="mb-4 text-center">
-               <button type="submit" name="btn_save" class="btn background-pr text-white w-100">
-                    Lưu
-               </button>
+                    <div class="mb-4 text-center">
+                         <button type="submit" name="btn_save" class="btn background-pr text-white w-100">
+                              Lưu
+                         </button>
+                    </div>
+               </form>
           </div>
-     </form>
-</div>
+          <div class="col-3"></div>
+     </div>
 </div>

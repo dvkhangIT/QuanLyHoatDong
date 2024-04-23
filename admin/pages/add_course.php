@@ -1,7 +1,7 @@
 <?php
-// if (!isset($_SESSION['tenDangNhap'])) {
-//     header("Location:");
-// }
+if (!isset($_SESSION['tenDangNhap'])) {
+     header("Location:../index.php?url=login");
+}
 // Kiểm tra xem form đã được submit chưa
 if (isset($_POST['btn_save'])) {
      // Lấy thông tin
@@ -40,20 +40,26 @@ if (isset($_POST['btn_save'])) {
         }
     }
     ?>
-     <div class="mb-4">
-          <a href="?url=list_course" class="btn btn-outline-primary">Khoá Học</a>
-     </div>
-     <form class="form-group" action="" method="post" enctype="multipart/form-data">
+     <div class="row">
+          <div class="col-3"></div>
+          <div class="col-6">
+               <div class="mb-4">
+                    <a href="?url=list_course" class="btn btn-outline-primary">Khoá Học</a>
+               </div>
+               <h3 class="mb-4 text-center">Thêm khoá học</h3>
+               <form class="form-group" action="" method="post" enctype="multipart/form-data">
 
-          <div class="mb-4 mt-4">
-               <label for="khoaHoc" class="form-label">Khoá học</label>
-               <input type="text" name="khoaHoc" class="form-control" id="khoaHoc" required />
+                    <div class="mb-4 mt-4">
+                         <label for="khoaHoc" class="form-label">Khoá học</label>
+                         <input type="text" name="khoaHoc" class="form-control" id="khoaHoc" required />
+                    </div>
+                    <div class="mb-4 text-center">
+                         <button type="submit" name="btn_save" class="btn background-pr text-white w-100">
+                              Lưu
+                         </button>
+                    </div>
+               </form>
           </div>
-          <div class="mb-4 text-center">
-               <button type="submit" name="btn_save" class="btn background-pr text-white w-100">
-                    Lưu
-               </button>
-          </div>
-     </form>
-</div>
+          <div class="col-3"></div>
+     </div>
 </div>

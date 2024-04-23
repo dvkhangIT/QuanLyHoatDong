@@ -1,10 +1,13 @@
 <?php
-
+if (!isset($_SESSION['tenDangNhap'])) {
+     header("Location:../index.php?url=login");
+ }
 ?>
-<!-- <div class="mb-3 w-50 float-right">
-     <form action="#">
+<div class="mb-3 w-50 float-right">
+     <form action="" method="post">
           <div class="input-group">
-               <input type="text" class="form-control form-control" placeholder="Tìm kiếm" name="input-search" />
+               <input type="text" class="form-control form-control" placeholder="Nhập tên sinh viên....?"
+                    name="input-search" />
                <div class="input-group-append background-pr rounded-right">
                     <button type="submit" class="btn btn-default text-white btn-hover" name="button-search">
                          <i class="fa fa-search"></i>
@@ -12,46 +15,42 @@
                </div>
           </div>
      </form>
-</div> -->
+</div>
 <table class="table-responsive table-striped table bg-light">
-     <tbody>
+     <thead>
+          <tr>
+               <th colspan="7" class="text-center">Danh sách sinh viên tham gia hoạt động</th>
+          </tr>
           <tr>
                <th class="">STT</th>
-               <th class="">MSSV</th>
+               <th class="col-2">MSSV</th>
                <th class="col-2">Họ tên</th>
-               <th class="col-2">Tên hoạt động</th>
-               <th class="">Thời gian</th>
-               <th class="col-3">Mô tả</th>
-               <th class="">Lớp</th>
+               <th class="col-2">Số điện thoại</th>
+               <th class="col-2">Email</th>
+               <th class="">Xem</th>
           </tr>
+     </thead>
+     <tbody>
+
           <?php
-                     // Bước 1: Định nghĩa các biến và hằng số phân trang
+          // Bước 1: Định nghĩa các biến và hằng số phân trang
         $limit = 5; // Số bản ghi trên mỗi trang
         $current_page = isset($_GET['page']) ? $_GET['page'] : 1; // Trang hiện tại, mặc định là trang 1
 
         // Bước 2: Sửa câu truy vấn SQL để lấy chỉ một phần của dữ liệu dựa trên trang hiện tại
         $start = ($current_page - 1) * $limit;
         if (isset($_POST['button-search'])) {
-            $key = $_POST['input-search'];
-            $sql = "SELECT * FROM hoatdong, sinhvien, thamgia, lop, khoa, khoahoc 
-            WHERE hoatdong.hoatDongID = thamgia.hoatDongID 
-            AND thamgia.MSSV = sinhvien.MSSV 
-            AND sinhvien.lopID = lop.lopID 
-            AND lop.khoaID = khoa.khoaID 
-            AND khoa.khoaHocID = khoahoc.khoaHocID
-            AND hoatdong.tenHoatDong LIKE '%$key%' LIMIT $start, $limit";
+            $key = trim($_POST['input-search']);
+            $sql = "SELECT * FROM sinhvien
+            WHERE sinhvien.hoTen LIKE '%$key%' LIMIT $start, $limit";
          } else {
-            $sql = "SELECT * FROM hoatdong, sinhvien, thamgia, lop, khoa, khoahoc 
-            WHERE hoatdong.hoatDongID = thamgia.hoatDongID 
-            AND thamgia.MSSV = sinhvien.MSSV 
-            AND sinhvien.lopID = lop.lopID 
-            AND lop.khoaID = khoa.khoaID 
-            AND khoa.khoaHocID = khoahoc.khoaHocID LIMIT $start,  $limit";
+            $sql = "SELECT * FROM sinhvien
+            LIMIT $start,  $limit";
         }
         $result = mysqli_query($conn, $sql);
 
         // Bước 3: Tính toán số lượng trang và hiển thị các nút phân trang
-        $total_rows = mysqli_num_rows(mysqli_query($conn, "SELECT * FROM thamgia "));
+        $total_rows = mysqli_num_rows(mysqli_query($conn, "SELECT * FROM sinhvien"));
         $total_pages = ceil($total_rows / $limit);
         if ($num = mysqli_num_rows($result) > 0) {
             $stt = $start + 1;
@@ -61,10 +60,12 @@
                <td><?php echo $stt++ ?></td>
                <td><?php echo $row['MSSV'] ?></td>
                <td><?php echo $row['hoTen'] ?></td>
-               <td><?php echo $row['tenHoatDong'] ?></td>
-               <td><?php echo $row['thoiGian'] ?></td>
-               <td><?php echo $row['moTa'] ?></td>
-               <td><?php echo $row['tenLop'] ?></td>
+               <td><?php echo $row['soDienThoai'] ?></td>
+               <td><?php echo $row['email'] ?></td>
+
+               <td>
+                    <a class="text-decoration-none"
+                         href="?url=detail_student_join&id=<?php echo $row['MSSV'] ?>">Xem</a>
           </tr>
           <?php
             }
