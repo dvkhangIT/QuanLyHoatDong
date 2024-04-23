@@ -72,8 +72,8 @@ if (!isset($_SESSION['tenDangNhap'])) {
                <td><?php echo $row['tenLop'] ?></td>
                <td><?php echo $row['khoaHoc'] ?></td>
                <td>
-                    <a href="?url=edit_delete_student&id=<?php echo $row['MSSV'] ?>"
-                         class="btn btn-outline-primary">Thêm lại</a>
+                    <a href="?url=add_student_delete&id=<?php echo $row['MSSV'] ?>" class="btn btn-outline-primary">Thêm
+                         lại</a>
                </td>
           </tr>
           <?php

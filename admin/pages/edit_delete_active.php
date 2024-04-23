@@ -5,9 +5,9 @@ if(isset($_GET['id'])) {
     $sql_select = "SELECT * FROM hoatdong WHERE hoatdong.hoatDongID = '$id'";
     $query_select = mysqli_query($conn, $sql_select);
     if ($row = mysqli_fetch_assoc($query_select)) {
-        $tenHoatDong = $row['tenHoatDong']; // Assuming 'tenHoatDong' is the activity name column
+        $tenHoatDong = $row['tenHoatDong']; 
     } else {
-        // Handle error if activity not found
+      
         echo "Activity not found.";
         exit;
     }

@@ -43,7 +43,7 @@ if (!isset($_SESSION['tenDangNhap'])) {
                <th class="col-4">Mô tả</th>
                <th class="col-2">Thời gian</th>
                <th class="col-0">Số lượng</th>
-               <th>Thêm lại</th>
+               <th class="col-1">Thêm lại</th>
           </tr>
      </thead>
      <tbody>
@@ -85,7 +85,7 @@ if (!isset($_SESSION['tenDangNhap'])) {
           <?php
             }
         } else {
-            header("Location:index.php?url=error");
+            header("Location:?url=error");
         }
         ?>
      </tbody>
@@ -94,7 +94,7 @@ if (!isset($_SESSION['tenDangNhap'])) {
      <ul class="pagination float-right">
           <?php for ($i=1; $i <=$total_pages; $i++) : ?>
           <li class="page-item <?php echo ($i == $current_page) ? 'active' : ''; ?>">
-               <a class="page-link" href="?url=list_active&page=<?php echo $i; ?>">
+               <a class="page-link" href="?url=add_active_delete&page=<?php echo $i; ?>">
                     <?php echo $i; ?>
                </a>
           </li>

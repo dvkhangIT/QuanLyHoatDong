@@ -32,7 +32,7 @@ if (confirm("Bạn có chắc chắn muốn thêm lại sinh viên '<?php echo $
      window.location.href = "?url=edit_delete_student&id=<?php echo $id; ?>&confirm=yes";
 } else {
      // Cancel deletion
-     window.location.href = "?url=add_student_delete";
+     window.location.href = "?url=edit_delete_student";
 }
 </script>
 <?php

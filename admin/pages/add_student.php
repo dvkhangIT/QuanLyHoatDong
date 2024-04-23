@@ -10,13 +10,14 @@ if (isset($_POST['btn_save'])) {
      $email = $_POST['email'];
      $soDienThoai = $_POST['soDienThoai'];
      $lopID = $_POST['lopID'];
+     $trangThai = 1;
      // Kiểm tra tài khoản đã tồn tại chưa
      $sql = "SELECT * FROM sinhvien WHERE MSSV = '$MSSV'";
      $result = mysqli_query($conn, $sql);
      if (mysqli_num_rows($result) > 0) {
           $flg = false;
      } else {
-          $sql = "INSERT INTO sinhvien (MSSV, hoTen, email, soDienThoai, lopID) VALUES ('$MSSV', '$hoTen', '$email', '$soDienThoai', '$lopID')";
+          $sql = "INSERT INTO sinhvien (MSSV, hoTen, email, soDienThoai, lopID, trangThai) VALUES ('$MSSV', '$hoTen', '$email', '$soDienThoai', '$lopID', '$trangThai')";
           $result = mysqli_query($conn, $sql);
           $flg = true;
      }
