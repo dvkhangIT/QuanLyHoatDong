@@ -29,8 +29,7 @@ if (!isset($_SESSION['tenDangNhap'])) {
      <!-- <button onclick="printPage()">In trang</button> -->
 </div>
 <div class="mb-3">
-     <a href="?url=add_active" class="btn btn-outline-primary">Thêm hoạt động</a>
-     <a href="?url=add_active_delete" class="btn btn-success">Hoạt động đã xoá</a>
+     <a href="?url=list_active" class="btn btn-outline-primary">Hoạt động</a>
 </div>
 <table class="table-responsive table-striped table bg-light">
      <thead>
@@ -44,8 +43,7 @@ if (!isset($_SESSION['tenDangNhap'])) {
                <th class="col-4">Mô tả</th>
                <th class="col-2">Thời gian</th>
                <th class="col-0">Số lượng</th>
-               <th>Sửa</th>
-               <th>Xoá</th>
+               <th>Thêm lại</th>
           </tr>
      </thead>
      <tbody>
@@ -59,10 +57,10 @@ if (!isset($_SESSION['tenDangNhap'])) {
            if (isset($_POST['button-search'])) {
                $key = trim($_POST['input-search']);
                $sql = "SELECT * FROM hoatdong 
-               WHERE hoatdong.trangThai <> '0' 
+               WHERE hoatdong.trangThai <> '1' 
                AND hoatdong.tenHoatDong LIKE '%$key%' LIMIT $start, $limit";
             } else {
-               $sql = "SELECT * FROM hoatdong WHERE hoatdong.trangThai <> '0'  LIMIT $start,  $limit";
+               $sql = "SELECT * FROM hoatdong WHERE hoatdong.trangThai <> '1'  LIMIT $start,  $limit";
            }
         $result = mysqli_query($conn, $sql);
         // Bước 3: Tính toán số lượng trang và hiển thị các nút phân trang
@@ -80,12 +78,8 @@ if (!isset($_SESSION['tenDangNhap'])) {
                <td><?php echo $row['thoiGian'] ?></td>
                <td><?php echo $row['soLuong'] ?></td>
                <td>
-                    <a href="?url=edit_active&id=<?php echo $row['hoatDongID'] ?>"
-                         class="btn btn-outline-primary">Sửa</a>
-               </td>
-               <td>
-                    <a href="?url=delete_active&id=<?php echo $row['hoatDongID'] ?>"
-                         class="btn btn-outline-danger">Xoá</a>
+                    <a href="?url=edit_delete_active&id=<?php echo $row['hoatDongID'] ?>"
+                         class="btn btn-outline-primary">Thêm lại</a>
                </td>
           </tr>
           <?php

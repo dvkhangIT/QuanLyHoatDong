@@ -17,8 +17,7 @@ if (!isset($_SESSION['tenDangNhap'])) {
      </form>
 </div>
 <div class="mb-4">
-     <a href="?url=add_student" class="btn btn-outline-primary">Thêm sinh viên</a>
-     <a href="?url=add_student_delete" class="btn btn-success ">Sinh viên đã xoá</a>
+     <a href="?url=list_student" class="btn btn-outline-primary">Sinh viên</a>
 </div>
 <table class="table-responsive table table-striped bg-light">
      <thead>
@@ -29,10 +28,9 @@ if (!isset($_SESSION['tenDangNhap'])) {
                <th class="col-1">MSSV</th>
                <th class="col-2">Họ tên</th>
                <th class="col-2">Email</th>
-               <th class="col-3">Tên lớp</th>
+               <th class="col-2">Tên lớp</th>
                <th class="col-2">Khoá học</th>
                <th class="col-2">Sửa</th>
-               <th>Xoá</th>
           </tr>
      </thead>
      <tbody>
@@ -49,13 +47,13 @@ if (!isset($_SESSION['tenDangNhap'])) {
                WHERE sinhvien.lopID = lop.lopID 
                AND lop.khoaID = khoa.khoaID 
                AND khoa.khoaHocID = khoahoc.khoaHocID
-               AND sinhvien.trangThai <> 0
+               AND sinhvien.trangThai <> 1
                AND sinhvien.hoTen LIKE '%$key%' LIMIT $start, $limit";
             } else {
                $sql = "SELECT * FROM sinhvien, lop, khoahoc, khoa 
                WHERE sinhvien.lopID = lop.lopID 
                AND lop.khoaID = khoa.khoaID 
-               AND sinhvien.trangThai <> 0
+               AND sinhvien.trangThai <> 1
                AND khoa.khoaHocID = khoahoc.khoaHocID LIMIT $start,  $limit";
            }
         $result = mysqli_query($conn, $sql);
@@ -74,10 +72,9 @@ if (!isset($_SESSION['tenDangNhap'])) {
                <td><?php echo $row['tenLop'] ?></td>
                <td><?php echo $row['khoaHoc'] ?></td>
                <td>
-                    <a href="?url=edit_student&id=<?php echo $row['MSSV'] ?>" class="btn btn-outline-primary">Sửa</a>
+                    <a href="?url=edit_delete_student&id=<?php echo $row['MSSV'] ?>"
+                         class="btn btn-outline-primary">Thêm lại</a>
                </td>
-               <td>
-                    <a href="?url=delete_student&id=<?php echo $row['MSSV'] ?>" class="btn btn-outline-danger">Xoá</a>
           </tr>
           <?php
             }
