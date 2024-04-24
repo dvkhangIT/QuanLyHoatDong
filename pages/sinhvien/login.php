@@ -1,9 +1,8 @@
 <?php
 if (isset($_POST['login_sv'])) {
   $username = $_POST['username'];
-  $matkhau = $_POST['password'];
   $vaitro = $_POST['radio_option'];
-  // $matkhau = md5($_POST['password']);
+  $matkhau = md5($_POST['password']);
   if ($vaitro == 'sinhvien') {
     $sql = "SELECT * FROM taikhoan,sinhvien WHERE taikhoan.MSSV ='$username' AND taikhoan.matKhau='$matkhau' AND taikhoan.MSSV = sinhvien.MSSV AND taikhoan.vaiTro = '$vaitro'";
 
