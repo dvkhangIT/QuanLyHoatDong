@@ -15,7 +15,8 @@ if (isset($_POST['login_sv'])) {
       $_SESSION['tenDangNhap'] = $row['tenDangNhap'];
       $_SESSION['hoTen'] = $row['hoTen'];
       $_SESSION['vaiTro'] = $row['vaiTro'];
-      header("Location:index.php");
+      // header("Location:index.php");
+      echo ' <script> location.replace("index.php"); </script>';
     } else {
       $noti = "Thông tin đăng nhập không hợp lệ!";
     }
@@ -29,7 +30,8 @@ if (isset($_POST['login_sv'])) {
       $_SESSION['tenDangNhap'] = $row['tenDangNhap'];
       // $_SESSION['hoTen'] = $row['hoTen'];
       // $_SESSION['vaiTro'] = $row['vaiTro'];
-      header("Location:admin/index.php");
+      // header("Location:admin/index.php");
+      echo ' <script> location.replace("admin/index.php"); </script>';
     } else {
       $noti = "Thông tin đăng nhập không hợp lệ!";
     }

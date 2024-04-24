@@ -1,6 +1,7 @@
 <?php
 if (!isset($_SESSION['tenDangNhap'])) {
-  header("Location:index.php?url=login");
+  echo ' <script>location.replace("index.php?url=login"); </script>';
+  // header("Location:index.php?url=login");
 }
 ?>
 <div class="main-content p-4 p-md-5 pt-5">
