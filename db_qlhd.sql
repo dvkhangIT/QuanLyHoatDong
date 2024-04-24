@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 08, 2024 at 03:39 AM
+-- Generation Time: Apr 23, 2024 at 07:39 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -42,8 +42,8 @@ CREATE TABLE `hoatdong` (
 --
 
 INSERT INTO `hoatdong` (`hoatDongID`, `tenHoatDong`, `thoiGian`, `moTa`, `soLuong`, `diaDiem`, `trangThai`) VALUES
-(1, 'Hội thảo sinh viên', '2024-01-02', 'Cộng 2 điểm', 9, 'Trường Đại học Kỹ thuật - Công nghệ Cần Thơ', 1),
-(2, 'Hỗ trợ tình nguyện hồ sơ nhập học sinh viên', '2024-01-03', 'Cộng 1 điểm', 99, 'Trường Đại học Kỹ thuật - Công nghệ Cần Thơ', 1),
+(1, 'Hội thảo sinh viên', '2024-01-02', 'Cộng 2 điểm', 19, 'Trường Đại học Kỹ thuật - Công nghệ Cần Thơ', 1),
+(2, 'Hỗ trợ tình nguyện hồ sơ nhập học sinh viên Hỗ trợ tình nguyện hồ sơ nhập học sinh viên \r\nHỗ trợ', '2024-01-03', 'Cộng 1 điểm Hỗ trợ tình nguyện hồ sơ nhập học sinh viên Hỗ trợ tình nguyện hồ sơ nhập học sinh viên Hỗ trợ tình nguyện hồ sơ nhập học sinh viên', 99, 'Trường Đại học Kỹ thuật - Công nghệ Cần Thơ', 1),
 (3, 'Hội thao sinh viên cấp khoa ', '2024-01-03', 'Cộng 3 điểm', 12, 'Trường Đại học Kỹ thuật - Công nghệ Cần Thơ', 1),
 (4, 'Sinh viên tình nguyện ', '2024-01-03', 'Cộng 1 điểm', 10, 'Trường Đại học Kỹ thuật - Công nghệ Cần Thơ', 1),
 (5, 'Hội thảo khởi nghiệp', '2024-01-03', 'Cộng 5 điểm', 90, 'Khách sạn Mường Thanh', 1),
@@ -67,8 +67,8 @@ CREATE TABLE `khoa` (
 
 INSERT INTO `khoa` (`khoaID`, `tenKhoa`, `khoaHocID`) VALUES
 (1, 'Công Nghệ Thông Tin', 1),
-(2, 'Công Nghệ Thực Phẩm', 1),
-(3, 'Quản Lý Công Nghiệp', 2);
+(2, 'Công Nghệ Thông Tin', 2),
+(3, 'Công Nghệ Thông Tin', 3);
 
 -- --------------------------------------------------------
 
@@ -107,8 +107,12 @@ CREATE TABLE `lop` (
 --
 
 INSERT INTO `lop` (`lopID`, `tenLop`, `khoaID`) VALUES
-(1, 'Công nghệ thông tin 0120', 1),
-(2, 'Kỹ thuật phầm mềm 0120\r\n', 1);
+(1, 'Công Nghệ Thông Tin 0120', 1),
+(2, 'Kỹ Thuật Phầm Mềm 0120\r\n', 1),
+(3, 'Công Nghệ Thông Tin 0121', 2),
+(4, 'Kỹ Thuật Phần Mềm 0121', 2),
+(5, 'Công Nghệ Thông Tin 0122', 3),
+(6, 'Kỹ Thuật Phần Mềm 0122', 3);
 
 -- --------------------------------------------------------
 
@@ -128,9 +132,24 @@ CREATE TABLE `minhchung` (
 --
 
 INSERT INTO `minhchung` (`minhChungID`, `hinhAnh`, `thoiGian`, `thamGiaID`) VALUES
-(1, 'Untitled1.png', '2024-01-05', 2),
-(2, 'RE4wppt.jpg', NULL, 1),
-(3, 'spaceman.jpg', NULL, 4);
+(1, '1704875528_2183784.jpg', '2024-01-05', 2),
+(2, '1704961177_computer.png', '2024-01-14', 1),
+(3, '1704961629_neon-art-rainbow-5120x2880-12378.jpg', '2024-01-09', 4),
+(5, '1705557306_IMG20230805142641.jpg', '2024-01-18', 5),
+(6, '1705557362_IMG20230805170129.jpg', '2024-01-18', 6),
+(7, '1705576687_IMG20230805170129.jpg', '2024-01-18', 8),
+(8, '1705578353_IMG20230805142641.jpg', '2024-01-18', 9),
+(9, '1712821033_z3388976955999_49020b0211db26e4a114f97c8166d0ad.jpg', '2024-04-11', 7),
+(10, '1713882192_Acer_Wallpaper_01_5000x2814.jpg', '2024-04-23', 10),
+(11, '1713884353_Planet9_Wallpaper_5000x2813.jpg', '2024-04-23', 11),
+(12, '1713884154_Acer_Wallpaper_03_5000x2814.jpg', '2024-04-23', 12),
+(13, '1713884160_z3388976914063_bb0c77fa653a0b3ac2f7bd862f73a91a.jpg', '2024-04-23', 13),
+(14, '1713884213_Acer_Wallpaper_01_5000x2814.jpg', '2024-04-23', 14),
+(15, '1713884218_z3388976970210_80e7cf152c01cbed38bca4825a9a7565.jpg', '2024-04-23', 15),
+(16, '1713884246_Acer_Wallpaper_03_5000x2814.jpg', '2024-04-23', 16),
+(17, '1713884251_z3388976914063_bb0c77fa653a0b3ac2f7bd862f73a91a.jpg', '2024-04-23', 17),
+(18, '1713884347_Planet9_Wallpaper_5000x2813.jpg', '2024-04-23', 18),
+(19, '1713884353_Planet9_Wallpaper_5000x2813.jpg', '2024-04-23', 19);
 
 -- --------------------------------------------------------
 
@@ -151,8 +170,8 @@ CREATE TABLE `sinhvien` (
 --
 
 INSERT INTO `sinhvien` (`MSSV`, `hoTen`, `email`, `soDienThoai`, `lopID`) VALUES
-('2100111', 'Nguyễn Văn An', 'nvan@gmail.com', '0368392055', 1),
-('2100112', 'Lê Thị Như', 'ltnhu@gmail.com', '0368387367', 2),
+('2100111', 'Nguyễn Văn An', 'nvan2100111@student.ctuet.edu.vn', '0368392055', 1),
+('2100112', 'Lê Thị Anh', 'ltanh@gmail.com', '0368387367', 1),
 ('2100113', 'Trần Anh Tuấn', 'tatuan@gmail.com', '0367842312', 1),
 ('2100114', 'Trần Minh Anh', 'tmanh@gmail.com', '0367842457', 2),
 ('2100115', 'Lê Thị Diễm', 'ltdiem@gmail.com', '0368892457', 2),
@@ -177,9 +196,13 @@ CREATE TABLE `taikhoan` (
 --
 
 INSERT INTO `taikhoan` (`taiKhoanID`, `tenDangNhap`, `matKhau`, `vaiTro`, `MSSV`) VALUES
-(1, '2100111', '2100111', 'sinhvien', '2100111'),
-(2, 'admin', 'admin', 'admin', NULL),
-(3, '2100112', 'fe0b1f43941ba17065eb0ae7bd564c96', 'sinhvien', '2100112');
+(1, '2100111', '7a1656221a2bc067dc1604c69b43d70d', 'sinhvien', '2100111'),
+(2, 'ad', '523af537946b79c4f8369ed39ba78605', 'admin', NULL),
+(3, '2100112', 'fe0b1f43941ba17065eb0ae7bd564c96', 'sinhvien', '2100112'),
+(4, '2100113', '93815d8b217b51471b8aa34345135e46', 'sinhvien', '2100113'),
+(5, '2100114', '83d13d89beed9af02d744e8819d941e1', 'sinhvien', '2100114'),
+(6, '2100115', '8cf5df5d2086660f5e4a68b04829a489', 'sinhvien', '2100115'),
+(7, '2100116', '20082fdf0650af70316dd921070362a2', 'sinhvien', '2100116');
 
 -- --------------------------------------------------------
 
@@ -200,7 +223,22 @@ CREATE TABLE `thamgia` (
 INSERT INTO `thamgia` (`thamGiaID`, `MSSV`, `hoatDongID`) VALUES
 (1, '2100111', 1),
 (2, '2100111', 2),
-(4, '2100111', 3);
+(4, '2100111', 3),
+(5, '2100112', 3),
+(6, '2100112', 1),
+(7, '2100112', 6),
+(8, '2100111', 6),
+(9, '2100111', 4),
+(10, '2100113', 3),
+(11, '2100113', 1),
+(12, '2100113', 5),
+(13, '2100113', 6),
+(14, '2100114', 1),
+(15, '2100114', 6),
+(16, '2100115', 1),
+(17, '2100115', 6),
+(18, '2100116', 1),
+(19, '2100116', 6);
 
 --
 -- Indexes for dumped tables
@@ -281,31 +319,31 @@ ALTER TABLE `khoa`
 -- AUTO_INCREMENT for table `khoahoc`
 --
 ALTER TABLE `khoahoc`
-  MODIFY `khoaHocID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `khoaHocID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `lop`
 --
 ALTER TABLE `lop`
-  MODIFY `lopID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `lopID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `minhchung`
 --
 ALTER TABLE `minhchung`
-  MODIFY `minhChungID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `minhChungID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT for table `taikhoan`
 --
 ALTER TABLE `taikhoan`
-  MODIFY `taiKhoanID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `taiKhoanID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `thamgia`
 --
 ALTER TABLE `thamgia`
-  MODIFY `thamGiaID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `thamGiaID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- Constraints for dumped tables

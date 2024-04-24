@@ -1,4 +1,7 @@
 <?php
+if (!isset($_SESSION['tenDangNhap'])) {
+     header("Location:../index.php?url=login");
+ }
 $_SESSION['tenDangNhap'] = "admin";
 if (isset($_POST['update'])) {
     $newPassword = $_POST['newPassword'];

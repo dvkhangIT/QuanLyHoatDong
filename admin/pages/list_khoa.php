@@ -1,4 +1,7 @@
 <?php
+if (!isset($_SESSION['tenDangNhap'])) {
+     header("Location:../index.php?url=login");
+ }
      $sql = "SELECT * FROM khoa, khoahoc 
      WHERE khoa.khoaHocID = khoahoc.khoaHocID";
      $query = mysqli_query($conn, $sql);
@@ -16,15 +19,20 @@
      </form>
 </div> -->
 <div class="mb-4">
-     <a href="?url=change_khoa" class="btn btn-outline-primary">Khoa</a>
+     <!-- <a href="?url=change_khoa" class="btn btn-outline-primary">Khoa</a> -->
 </div>
-<table class="table-striped table bg-light">
-     <tbody>
+<table class="table table-striped bg-light ">
+     <thead class="">
+          <tr>
+               <th colspan="3" class="text-center">Danh sách khoa</th>
           <tr>
                <th class="">STT</th>
                <th class="">Khoá học</th>
                <th class="">Khoa</th>
           </tr>
+     </thead>
+     <tbody class="">
+
           <?php
         if ($num = mysqli_num_rows($query) > 0) {
             $stt = 0;

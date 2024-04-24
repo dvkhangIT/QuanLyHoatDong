@@ -1,13 +1,13 @@
 <?php
-     // $sql = "SELECT * FROM lop, khoa, khoahoc 
-     // WHERE lop.khoaID = khoa.khoaID 
-     // AND khoa.khoaHocID = khoahoc.khoaHocID";
-     // $query = mysqli_query($conn, $sql);
+     if (!isset($_SESSION['tenDangNhap'])) {
+          header("Location:../index.php?url=login");
+      }
 ?>
-<!-- <div class="mb-3 w-50 float-right">
-     <form action="#">
+<div class="mb-3 w-50 float-right">
+     <form action="" method="post">
           <div class="input-group">
-               <input type="text" class="form-control form-control" placeholder="Tìm kiếm" name="input-search" />
+               <input type="text" class="form-control form-control" placeholder="Nhập tên lớp....?"
+                    name="input-search" />
                <div class="input-group-append background-pr rounded-right">
                     <button type="submit" class="btn btn-default text-white btn-hover" name="button-search">
                          <i class="fa fa-search"></i>
@@ -15,12 +15,15 @@
                </div>
           </div>
      </form>
-</div> -->
+</div>
 <div class="mb-4">
      <a href="?url=add_class" class="btn btn-outline-primary">Thêm lớp</a>
 </div>
 <table class="table-striped table bg-light">
-     <tbody>
+     <thead>
+          <tr>
+               <th colspan="4" class="text-center">Danh sách lớp</th>
+          </tr>
           <tr>
                <th class="">STT</th>
                <th class="">Lớp</th>
@@ -28,15 +31,18 @@
                <th class="">Khoa</th>
 
           </tr>
+     </thead>
+     <tbody>
+
           <?php
            // Bước 1: Định nghĩa các biến và hằng số phân trang
-        $limit = 3; // Số bản ghi trên mỗi trang
+        $limit = 5; // Số bản ghi trên mỗi trang
         $current_page = isset($_GET['page']) ? $_GET['page'] : 1; // Trang hiện tại, mặc định là trang 1
 
         // Bước 2: Sửa câu truy vấn SQL để lấy chỉ một phần của dữ liệu dựa trên trang hiện tại
         $start = ($current_page - 1) * $limit;
         if (isset($_POST['button-search'])) {
-            $key = $_POST['input-search'];
+            $key = trim($_POST['input-search']);
             $sql = "SELECT * FROM lop, khoa, khoahoc 
             WHERE lop.khoaID = khoa.khoaID 
             AND khoa.khoaHocID = khoahoc.khoaHocID

@@ -1,7 +1,7 @@
 <?php
-// if (!isset($_SESSION['tenDangNhap'])) {
-//     header("Location:");
-// }
+if (!isset($_SESSION['tenDangNhap'])) {
+     header("Location:../index.php?url=login");
+ }
 // Kiểm tra xem form đã được submit chưa
 if (isset($_POST['btn_save'])) {
      // Lấy thông tin
@@ -45,39 +45,45 @@ if (isset($_POST['btn_save'])) {
         }
     }
     ?>
-     <div class="mb-4">
-          <a href="?url=list_active" class="btn btn-outline-primary">Hoạt Động</a>
+     <div class="row">
+          <div class="col-3"></div>
+          <div class="col-6">
+               <div class="mb-4">
+                    <a href="?url=list_active" class="btn btn-outline-primary">Hoạt Động</a>
+               </div>
+               <h3 class="mb-4 text-center">Thêm hoạt động</h3>
+               <form class="form-group" action="" method="post" enctype="multipart/form-data">
+                    <div class="mb-4 mt-4">
+                         <label for="tenHoatDong" class="form-label">Tên hoạt động</label>
+                         <input type="text" name="tenHoatDong" class="form-control" id="tenHoatDong" required />
+                    </div>
+                    <div class="mb-4 mt-4">
+                         <label for="thoiGian" class="form-label">Thời gian</label>
+                         <input type="date" name="thoiGian" class="form-control" id="thoiGian" required />
+                    </div>
+                    <div class="mb-4 mt-4">
+                         <label for="soLuong" class="form-label">Số lượng</label>
+                         <input type="number" name="soLuong" class="form-control" id="soLuong" min="1" required />
+                    </div>
+                    <div class="mb-4 mt-4">
+                         <label for="diaDiem" class="form-label">Địa điểm</label>
+                         <input type="text" name="diaDiem" class="form-control" id="diaDiem" required />
+                    </div>
+                    <div class="mb-4 mt-4">
+                         <label for="moTa" class="form-label">Mô tả</label>
+                         <input type="text" name="moTa" class="form-control" id="moTa" required />
+                    </div>
+                    <div class="mb-4 mt-4">
+                         <label for="trangThai" class="form-label">Trạng thái</label>
+                         <input type="text" name="trangThai" class="form-control" id="trangThai" value="1" />
+                    </div>
+                    <div class="mb-4 text-center">
+                         <button type="submit" name="btn_save" class="btn background-pr text-white w-100">
+                              Lưu
+                         </button>
+                    </div>
+               </form>
+          </div>
+          <div class="col-3"></div>
      </div>
-     <form class="form-group" action="" method="post" enctype="multipart/form-data">
-          <div class="mb-4 mt-4">
-               <label for="tenHoatDong" class="form-label">Tên hoạt động</label>
-               <input type="text" name="tenHoatDong" class="form-control" id="tenHoatDong" required />
-          </div>
-          <div class="mb-4 mt-4">
-               <label for="thoiGian" class="form-label">Thời gian</label>
-               <input type="date" name="thoiGian" class="form-control" id="thoiGian" required />
-          </div>
-          <div class="mb-4 mt-4">
-               <label for="soLuong" class="form-label">Số lượng</label>
-               <input type="number" name="soLuong" class="form-control" id="soLuong" min="1" required />
-          </div>
-          <div class="mb-4 mt-4">
-               <label for="diaDiem" class="form-label">Địa điểm</label>
-               <input type="text" name="diaDiem" class="form-control" id="diaDiem" required />
-          </div>
-          <div class="mb-4 mt-4">
-               <label for="moTa" class="form-label">Mô tả</label>
-               <input type="text" name="moTa" class="form-control" id="moTa" required />
-          </div>
-          <div class="mb-4 mt-4">
-               <label for="trangThai" class="form-label">Trạng thái</label>
-               <input type="text" name="trangThai" class="form-control" id="trangThai" value="1" />
-          </div>
-          <div class="mb-4 text-center">
-               <button type="submit" name="btn_save" class="btn background-pr text-white w-100">
-                    Lưu
-               </button>
-          </div>
-     </form>
-</div>
 </div>
