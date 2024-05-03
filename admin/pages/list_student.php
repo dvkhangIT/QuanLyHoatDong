@@ -18,7 +18,7 @@ if (!isset($_SESSION['tenDangNhap'])) {
 </div>
 <div class="mb-4">
      <a href="?url=add_student" class="btn btn-outline-primary">Thêm sinh viên</a>
-     <a href="?url=add_student_delete" class="btn btn-success ">Sinh viên đã xoá</a>
+     <!-- <a href="?url=add_student_delete" class="btn btn-success ">Sinh viên đã xoá</a> -->
 </div>
 <table class="table-responsive table table-striped bg-light">
      <thead>
