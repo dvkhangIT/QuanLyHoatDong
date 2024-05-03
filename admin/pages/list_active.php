@@ -30,7 +30,7 @@ if (!isset($_SESSION['tenDangNhap'])) {
 </div>
 <div class="mb-3">
      <a href="?url=add_active" class="btn btn-outline-primary">Thêm hoạt động</a>
-     <a href="?url=add_active_delete" class="btn btn-success">Hoạt động đã xoá</a>
+     <!-- <a href="?url=add_active_delete" class="btn btn-success">Hoạt động đã xoá</a> -->
 </div>
 <table class="table-responsive table-striped table bg-light">
      <thead>
