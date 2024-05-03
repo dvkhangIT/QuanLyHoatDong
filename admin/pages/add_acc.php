@@ -78,6 +78,7 @@ if (isset($_POST['btn_save'])) {
                               <option value="admin">Admin</option>
                          </section> -->
                     </div>
+
                     <div class="mb-4 text-center">
                          <button type="submit" name="btn_save" class="btn  background-pr text-white w-100">
                               Lưu
