@@ -1,9 +1,8 @@
 <?php
 if (isset($_POST['login_sv'])) {
   $username = $_POST['username'];
-  $matkhau = md5($_POST['password']);
   $vaitro = $_POST['radio_option'];
-  // $matkhau = md5($_POST['password']);
+  $matkhau = md5($_POST['password']);
   if ($vaitro == 'sinhvien') {
     $sql = "SELECT * FROM taikhoan,sinhvien WHERE taikhoan.MSSV ='$username' AND taikhoan.matKhau='$matkhau' AND taikhoan.MSSV = sinhvien.MSSV AND taikhoan.vaiTro = '$vaitro'";
 
@@ -48,7 +47,8 @@ if (isset($_POST['login_sv'])) {
       </div>
       <div class="mb-4">
         <label for="inputPassword" class="form-label">Mật khẩu</label>
-        <input type="password" class="form-control" name="password" id="inputPassword" />
+        <input type="password" class="form-control password" name=" password" id="inputPassword" oninput="validatePassword()" />
+        <div class="mt-2 text-danger" id="passwordMessage"></div>
       </div>
       <div class="d-flex align-items-center justify-content-around">
         <div class="custom-control custom-radio">
@@ -69,7 +69,7 @@ if (isset($_POST['login_sv'])) {
         </div>
       </div>
       <div class="mt-3">
-        <button type="submit" class="btn background-pr text-white mb-4 w-100 p-2 btn-hover" name="login_sv">
+        <button type="submit" class="btn background-pr text-white mb-4 w-100 p-2 btn-hover" name="login_sv" id="submitButton">
           Đăng nhập
         </button>
       </div>
