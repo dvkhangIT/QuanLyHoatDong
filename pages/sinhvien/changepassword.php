@@ -1,7 +1,7 @@
 <?php
 if (isset($_POST['update'])) {
-  $newPassword = $_POST['newPassword'];
-  $confirmPassword = $_POST['confirmPassword'];
+  $newPassword = md5($_POST['newPassword']);
+  $confirmPassword = md5($_POST['confirmPassword']);
   $mssv = $_SESSION['tenDangNhap'];
   $sql = "SELECT * FROM `taikhoan` WHERE MSSV = '$mssv'";
   $result = mysqli_query($conn, $sql);
@@ -10,7 +10,6 @@ if (isset($_POST['update'])) {
   $oldPassword = $row['matKhau'];
   if ($newPassword == $confirmPassword) {
     if ($newPassword != $oldPassword) {
-
       $sql = "UPDATE `taikhoan` SET `matKhau` = '$newPassword' WHERE `taikhoan`.`taiKhoanID` = $taiKhoanID";
       $result = mysqli_query($conn, $sql);
       $flg = true;
@@ -21,7 +20,6 @@ if (isset($_POST['update'])) {
   } else if ($newPassword != $confirmPassword) {
     $noti = "Mật khẩu không khớp!";
   }
-  // $matkhau = md5($_POST['password']);
 }
 ?>
 <div class="container">
