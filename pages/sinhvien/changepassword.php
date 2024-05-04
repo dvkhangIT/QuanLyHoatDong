@@ -1,7 +1,7 @@
 <?php
 if (isset($_POST['update'])) {
-  $newPassword = $_POST['newPassword'];
-  $confirmPassword = $_POST['confirmPassword'];
+  $newPassword = md5($_POST['newPassword']);
+  $confirmPassword = md5($_POST['confirmPassword']);
   $mssv = $_SESSION['tenDangNhap'];
   $sql = "SELECT * FROM `taikhoan` WHERE MSSV = '$mssv'";
   $result = mysqli_query($conn, $sql);

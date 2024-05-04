@@ -22,7 +22,7 @@ if (isset($_GET['id'])) {
                 </button>
             </div>';
   } else {
-    $sql_check_participation = "SELECT COUNT(*) AS count FROM thamgia WHERE  hoatDongID = $id_link";
+    $sql_check_participation = "SELECT COUNT(*) AS count FROM thamgia WHERE hoatDongID = $id_link AND MSSV = $mssv";
     $result_check_participation = mysqli_query($conn, $sql_check_participation);
     $row_check_participation = mysqli_fetch_assoc($result_check_participation);
     $count = $row_check_participation['count'];
