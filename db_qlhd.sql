@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 23, 2024 at 07:39 PM
+-- Generation Time: Apr 25, 2024 at 08:49 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -42,8 +42,8 @@ CREATE TABLE `hoatdong` (
 --
 
 INSERT INTO `hoatdong` (`hoatDongID`, `tenHoatDong`, `thoiGian`, `moTa`, `soLuong`, `diaDiem`, `trangThai`) VALUES
-(1, 'Hội thảo sinh viên', '2024-01-02', 'Cộng 2 điểm', 19, 'Trường Đại học Kỹ thuật - Công nghệ Cần Thơ', 1),
-(2, 'Hỗ trợ tình nguyện hồ sơ nhập học sinh viên Hỗ trợ tình nguyện hồ sơ nhập học sinh viên \r\nHỗ trợ', '2024-01-03', 'Cộng 1 điểm Hỗ trợ tình nguyện hồ sơ nhập học sinh viên Hỗ trợ tình nguyện hồ sơ nhập học sinh viên Hỗ trợ tình nguyện hồ sơ nhập học sinh viên', 99, 'Trường Đại học Kỹ thuật - Công nghệ Cần Thơ', 1),
+(1, 'Hội thảo sinh viên', '2024-01-02', 'Cộng 2 điểm', 19, 'Trường Đại học Kỹ thuật - Công nghệ Cần Thơ', 0),
+(2, 'Hỗ trợ tình nguyện hồ sơ nhập học sinh viên', '2024-01-03', 'Cộng 2 điểm rèn luyện', 99, 'Trường Đại học Kỹ thuật - Công nghệ Cần Thơ', 1),
 (3, 'Hội thao sinh viên cấp khoa ', '2024-01-03', 'Cộng 3 điểm', 12, 'Trường Đại học Kỹ thuật - Công nghệ Cần Thơ', 1),
 (4, 'Sinh viên tình nguyện ', '2024-01-03', 'Cộng 1 điểm', 10, 'Trường Đại học Kỹ thuật - Công nghệ Cần Thơ', 1),
 (5, 'Hội thảo khởi nghiệp', '2024-01-03', 'Cộng 5 điểm', 90, 'Khách sạn Mường Thanh', 1),
@@ -162,20 +162,23 @@ CREATE TABLE `sinhvien` (
   `hoTen` varchar(100) NOT NULL,
   `email` varchar(50) NOT NULL,
   `soDienThoai` varchar(10) NOT NULL,
-  `lopID` int(11) NOT NULL
+  `lopID` int(11) NOT NULL,
+  `trangThai` tinyint(4) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `sinhvien`
 --
 
-INSERT INTO `sinhvien` (`MSSV`, `hoTen`, `email`, `soDienThoai`, `lopID`) VALUES
-('2100111', 'Nguyễn Văn An', 'nvan2100111@student.ctuet.edu.vn', '0368392055', 1),
-('2100112', 'Lê Thị Anh', 'ltanh@gmail.com', '0368387367', 1),
-('2100113', 'Trần Anh Tuấn', 'tatuan@gmail.com', '0367842312', 1),
-('2100114', 'Trần Minh Anh', 'tmanh@gmail.com', '0367842457', 2),
-('2100115', 'Lê Thị Diễm', 'ltdiem@gmail.com', '0368892457', 2),
-('2100116', 'Nguyễn Lê Hải Âu', 'nlhau2100116@student.ctuet.edu.vn', '0123456789', 1);
+INSERT INTO `sinhvien` (`MSSV`, `hoTen`, `email`, `soDienThoai`, `lopID`, `trangThai`) VALUES
+('2100111', 'Nguyễn Văn An', 'nvan2100111@student.ctuet.edu.vn', '0368392055', 1, 1),
+('2100112', 'Lê Thị Anh', 'ltanh2100112@gmail.com', '0368387367', 1, 1),
+('2100113', 'Trần Anh Tuấn', 'tatuan@gmail.com', '0367842312', 1, 1),
+('2100114', 'Trần Minh Anh', 'tmanh@gmail.com', '0367842457', 2, 1),
+('2100115', 'Lê Thị Diễm', 'ltdiem@gmail.com', '0368892457', 2, 1),
+('2100116', 'Nguyễn Lê Hải Âu', 'nlhau2100116@student.ctuet.edu.vn', '0123456789', 1, 1),
+('2100117', 'Đỗ Hoàng An', 'dhan2100117@gmail.com', '0357123984', 6, 1),
+('2100118', 'Nguyễn Hoàng Qui', 'ngqui2100118@gmail.com', '0358164975', 5, 1);
 
 -- --------------------------------------------------------
 
@@ -197,7 +200,7 @@ CREATE TABLE `taikhoan` (
 
 INSERT INTO `taikhoan` (`taiKhoanID`, `tenDangNhap`, `matKhau`, `vaiTro`, `MSSV`) VALUES
 (1, '2100111', '7a1656221a2bc067dc1604c69b43d70d', 'sinhvien', '2100111'),
-(2, 'ad', '523af537946b79c4f8369ed39ba78605', 'admin', NULL),
+(2, 'admin', '523af537946b79c4f8369ed39ba78605', 'admin', NULL),
 (3, '2100112', 'fe0b1f43941ba17065eb0ae7bd564c96', 'sinhvien', '2100112'),
 (4, '2100113', '93815d8b217b51471b8aa34345135e46', 'sinhvien', '2100113'),
 (5, '2100114', '83d13d89beed9af02d744e8819d941e1', 'sinhvien', '2100114'),

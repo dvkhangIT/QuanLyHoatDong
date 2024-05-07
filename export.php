@@ -21,13 +21,13 @@ $pdf->Ln(); // Move to the next line
 // Fill data into the table
 $stt = 0;
 while ($row = mysqli_fetch_array($query)) {
-    $pdf->Cell(10, 20, $stt, 1);
-    $pdf->Cell(80, 20, $row['tenHoatDong'], 1);
-    $pdf->Cell(80, 20, $row['diaDiem'], 1);
-    $pdf->Cell(30, 20, $row['moTa'], 1);
-    $pdf->Cell(30, 20, $row['thoiGian'], 1);
-    $pdf->Cell(15, 20, $row['soLuong'], 1);
-    $pdf->Ln(); // Move to the next line
+  $pdf->Cell(10, 20, $stt, 1);
+  $pdf->Cell(80, 20, $row['tenHoatDong'], 1);
+  $pdf->Cell(80, 20, $row['diaDiem'], 1);
+  $pdf->Cell(30, 20, $row['moTa'], 1);
+  $pdf->Cell(30, 20, $row['thoiGian'], 1);
+  $pdf->Cell(15, 20, $row['soLuong'], 1);
+  $pdf->Ln(); // Move to the next line
 }
 $pdfFileName = 'danhsachhoatdong.pdf';
 

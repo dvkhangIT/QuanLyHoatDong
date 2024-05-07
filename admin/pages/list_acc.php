@@ -29,7 +29,7 @@ if (!isset($_SESSION['tenDangNhap'])) {
           <tr>
                <th class="col-1">STT</th>
                <th class="col-2">Tên tài khoản</th>
-               <th class="col-1">Vai trò</th>
+               <th class="col-2">Tên sinh viên</th>
                <th class="col-2">Lớp</th>
                <th class="col-1">Khoá học</th>
                <th class="col-2">Khoa</th>
@@ -72,7 +72,7 @@ if (!isset($_SESSION['tenDangNhap'])) {
           <tr>
                <td><?php echo $stt++ ?></td>
                <td><?php echo $row['tenDangNhap'] ?></td>
-               <td><?php echo $row['vaiTro'] ?></td>
+               <td><?php echo $row['hoTen'] ?></td>
                <td><?php echo $row['tenLop'] ?></td>
                <td><?php echo $row['khoaHoc'] ?></td>
                <td><?php echo $row['tenKhoa'] ?></td>

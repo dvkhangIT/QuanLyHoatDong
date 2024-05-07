@@ -60,7 +60,7 @@ require "connect.php";
           $page = $_GET['url'];
           require "pages/sinhvien/" . $page . ".php";
         } else {
-          require "pages/sinhvien/home.php";
+          echo ' <script> location.replace("index.php?url=home"); </script>';
         }
         ?>
       </div>

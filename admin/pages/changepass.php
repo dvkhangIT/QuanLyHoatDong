@@ -1,4 +1,4 @@
-<?php
+<<<<<<< HEAD <?php
 if (!isset($_SESSION['tenDangNhap'])) {
      header("Location:../index.php?url=login");
  }
@@ -26,8 +26,7 @@ if (isset($_POST['update'])) {
         $noti = "Mật khẩu không khớp!";
     }
 }
-?>
-<div class="container">
+?> <div class="container">
      <div class="form-login">
           <h4 class="text-center text-uppercase color-pr">Đổi mật khẩu</h4>
           <form action="" autocomplete="off" method="POST">
@@ -50,4 +49,4 @@ if (isset($_POST['update'])) {
                </div>
           </form>
      </div>
-</div>
+     </div>
