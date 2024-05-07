@@ -2,12 +2,12 @@
 if (!isset($_SESSION['tenDangNhap'])) {
      header("Location:../index.php?url=login");
  }
-$_SESSION['tenDangNhap'] = "admin";
+
 if (isset($_POST['update'])) {
-    $newPassword = $_POST['newPassword'];
-    $confirmPassword = $_POST['confirmPassword'];
+    $newPassword = md5($_POST['newPassword']);
+    $confirmPassword = md5($_POST['confirmPassword']);
     $tenDangNhap = $_SESSION['tenDangNhap'];
-    $sql = "SELECT * FROM `taikhoan` WHERE tenDangNhap = '$tenDangNhap'";
+    $sql = "SELECT * FROM `taikhoan` WHERE tenDangNhap = 'admin'";
     $result = mysqli_query($conn, $sql);
     $row = mysqli_fetch_array($result);
     $taiKhoanID = $row['taiKhoanID'];
@@ -25,7 +25,6 @@ if (isset($_POST['update'])) {
     } else if ($newPassword != $confirmPassword) {
         $noti = "Mật khẩu không khớp!";
     }
-    // $matkhau = md5($_POST['password']);
 }
 ?>
 <div class="container">
@@ -34,7 +33,7 @@ if (isset($_POST['update'])) {
           <form action="" autocomplete="off" method="POST">
                <div class="mb-4">
                     <label for="username" class="form-label">Mật khẩu mới</label>
-                    <input type="text" class="form-control" name="newPassword" value="" id="username" />
+                    <input type="password" class="form-control" name="newPassword" value="" id="username" />
                </div>
                <div class="mb-4">
                     <label for="inputPassword" class="form-label">Xác thực mật khẩu</label>
